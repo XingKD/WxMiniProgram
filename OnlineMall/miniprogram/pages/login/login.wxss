@@ -1,0 +1,58 @@
+/* miniprogram/pages/login/login.wxss */
+page {
+  height: 100%;
+}
+
+.loginView {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.loginView .bgImage{
+  width:100%;
+  height:100%;
+  z-index: -10;
+  background: rgba(0,0,0,0.2);
+  filter:blur(5px);
+}
+
+.loginView .logoImage {
+    width: 70%;
+    height: 30%;
+    position: absolute;
+    margin: 15% 0 0 15%;
+    transform: scale(0.5);
+    opacity: 0.5;
+}
+
+.loginView .opView {
+  width: 60%;
+  height: 120px;
+  position: absolute;
+  margin: 100% 0 0 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.opView .wxLoginBtn {
+  width: 100%;
+  height: 40px;
+  line-height: 25px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  opacity: 0;
+  left: -20%;
+}
+
+.opView .phoneLoginBtn {
+  width: 100%;
+  height: 40px;
+  line-height: 25px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  opacity: 0;
+  left: 20%;
+}
+

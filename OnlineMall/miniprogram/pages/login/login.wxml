@@ -1,0 +1,9 @@
+<!--miniprogram/pages/login/login.wxml-->
+<view class="loginView">
+  <image class="bgImage" src="../../images/login/background.jpg"></image>
+  <image class="logoImage" src="../../images/login/logo.png" animation="{{loginAni}}"></image>
+  <view class="opView">
+    <button class="wxLoginBtn" type="primary" bindtap="onGetUserProfile" animation="{{btnAni}}">微信一键登录</button>
+    <button class="phoneLoginBtn" type="default" open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber" animation="{{btnAni}}">手机验证码登录</button>
+  </view>
+</view>
