@@ -1,21 +1,27 @@
 //app.js
 App({
   onLaunch: function () {
-    var that = this;
-    if (!wx.cloud) {
-      console.error('请使用 2.2.3 或以上的基础库以使用云能力')
-    } else {
-      wx.cloud.init({
-        env: "online-mall-4gmfvy8l4f956b12",
-        traceUser: true,
-      })
-    }
+    wx.cloud.init({
+      env: "online-mall-4gmfvy8l4f956b12",
+      traceUser: false,
+    });
     this.globalData = {
+      userInfo: {},
+      userProfile: {}
     }
-    // 检查登录态
-    wx.checkSession({
+    // 获取登录态
+    wx.getStorage({
+      key: "isLogin",
+      success: function(res) {
+        // 如果未登录，则先跳转到登录界面
+        if (res.data === false) {
+          wx.navigateTo({
+            url: '/pages/login/login'
+          });
+        }
+      },
       fail: function(res) {
-        // 跳转到登录界面
+        // 未记录用户数据
         wx.navigateTo({
           url: '/pages/login/login'
         });

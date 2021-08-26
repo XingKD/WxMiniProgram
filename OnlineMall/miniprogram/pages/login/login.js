@@ -4,7 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    loginAni: {},
+    logoAni: {},
     btnAni: {}
   },
 
@@ -32,7 +32,7 @@ Page({
       timingFunction: 'ease',
     });
     logoAni.scale(1, 1).opacity(1).step();
-    this.setData({loginAni: logoAni.export()});
+    this.setData({logoAni: logoAni.export()});
     let btnAni = wx.createAnimation({
       delay: 250,
       duration: 1000,
@@ -86,14 +86,23 @@ Page({
     wx.getUserProfile({
       desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: function(res) {
-        // 保存用户信息
-        getApp().globalData.userInfo = res.userInfo;
-        // 用户登录
-        wx.login({
-          timeout: 3000,
+        let userProfile = res.userProfile;
+        // 调用 login 云函数
+        wx.cloud.callFunction({
+          name: 'login',
+          data: {
+            userProfile: userProfile
+          },
           success: function(res) {
+            console.log(res);
+            // 保存用户信息到全局变量
+            getApp().globalData.userInfo = res.userInfo;
+            // 保存用户简介到全局变量
+            getApp().globalData.userProfile = res.userProfile;
+            // 保存登录态
+            wx.setStorageSync('isLogin', true);
+            // 退回到主界面
             wx.navigateBack();
-            console.log(getApp().globalData)
           }
         });
       }
