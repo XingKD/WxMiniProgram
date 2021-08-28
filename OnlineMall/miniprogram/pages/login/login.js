@@ -94,7 +94,6 @@ Page({
             userProfile: userProfile
           },
           success: function(res) {
-            console.log(res);
             // 保存用户信息到全局变量
             getApp().globalData.userInfo = res.userInfo;
             // 保存用户简介到全局变量
